@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * 多线程循环打印 1,2,3...n
+ *
+ * @author yqzhou
+ * @date 2021/03/11
+ */
 @Slf4j
 public class MultiThreadPrint {
     private static List<Thread> list;
