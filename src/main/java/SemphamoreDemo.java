@@ -1,5 +1,3 @@
-package daily.learn;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.SneakyThrows;
