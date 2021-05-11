@@ -4,6 +4,9 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 设计链表
+ */
 public class MyLinkedList {
     private ListNode head;
     private ListNode tail;
@@ -61,15 +64,15 @@ public class MyLinkedList {
      * Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted.
      */
     public void addAtIndex(int index, int val) {
-        if (len==0 && index == 0) {
+        if (len == 0 && index == 0) {
             ListNode insertNode = new ListNode(val);
-            head=insertNode;
-            head.next=tail;
-            tail.pre=head;
+            head = insertNode;
+            head.next = tail;
+            tail.pre = head;
             len++;
             return;
         }
-        if (index < 0 || index >=len) return;
+        if (index < 0 || index >= len) return;
         ListNode node = head;
         index -= 1;
         while (index > 0) {
