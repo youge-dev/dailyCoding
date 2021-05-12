@@ -1,3 +1,5 @@
+import redis.clients.jedis.Jedis;
+
 import java.util.LinkedHashMap;
 
 public class LRUCache {
