@@ -12,10 +12,4 @@ docs/node_modules
 jserver
 *.iml
 
-### IntelliJ IDEA ###
-.idea/*
-.gradle/*
-gradle.wrr
-*.iws
-*.iml
-*.ipr
+
