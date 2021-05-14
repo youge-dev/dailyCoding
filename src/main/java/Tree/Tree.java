@@ -24,21 +24,27 @@ public class Tree {
      */
     public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
-        if (root == null) return new ArrayList<>();
+        if (root == null) return res;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        int index = 0;
+
+        boolean isLeft = true;
         while (!queue.isEmpty()) {
             int size = queue.size();
-            res.add(new ArrayList<Integer>());
-            for (int i = size - 1; i >= 0; i--) {
-                TreeNode node = queue.peek();
-                res.get(index).add(node.val);
-                queue.poll();
+            Deque<Integer> integerDeque = new LinkedList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (isLeft) {
+                    integerDeque.offerLast(node.val); //顺序
+                } else {
+                    integerDeque.offerFirst(node.val); // 逆序
+                }
+
                 if (node.left != null) queue.offer(node.left);
-                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
             }
-            index++;
+            isLeft = !isLeft;
+           res.add(new LinkedList<>(integerDeque));
         }
         return res;
     }
@@ -92,6 +98,11 @@ public class Tree {
         node.right.left = new TreeNode(15);
         node.right.right = new TreeNode(7);
         System.out.println(Arrays.toString(zigzagLevelOrder(node).toArray()));
+
+        Deque<Integer> integerDeque = new LinkedList<>();
+        integerDeque.offerLast(10);
+        integerDeque.offerLast(9);
+        System.out.println(Arrays.toString(integerDeque.toArray()));
 
     }
 }
