@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-# Created by .ignore support plugin (hsz.mobi)
-.idea
-docs/api.html
-docs/node_modules
-.gradle/
-**/.project
-**/.classpath
-**/.settings
-**/build/
-**/bin/
-**/out/
-jserver
-*.iml
-=======
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -45,4 +30,3 @@ build/
 .gradle
 ### VS Code ###
 .vscode/
->>>>>>> a66db7ddc131b3c618cf35aaa37eb69010faebb7
