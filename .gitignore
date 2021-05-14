@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Created by .ignore support plugin (hsz.mobi)
 .idea
 docs/api.html
@@ -12,37 +11,11 @@ docs/node_modules
 **/out/
 jserver
 *.iml
-=======
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
-.gradle/
+.idea/*
+.gradle/*
+gradle.wrr
 *.iws
 *.iml
 *.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-.gradle
-### VS Code ###
-.vscode/
->>>>>>> a66db7ddc131b3c618cf35aaa37eb69010faebb7
