@@ -1,9 +1,7 @@
 package Array;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * leetcode 数组 （java）
@@ -75,8 +73,42 @@ public class Array {
         return res;
     }
 
+    /**
+     * 46. 全排列
+     *
+     * @param nums
+     * @return
+     */
+    public static List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> output = new ArrayList<>();
+        for (int num : nums) {
+            output.add(num);
+        }
+        int n = nums.length;
+        backTrace(0, n, output, res); //回溯法
+        return res;
+    }
+
+    /**
+     * @param first  填写的第n个位置
+     * @param n      总共的长度
+     * @param output
+     * @param res
+     */
+    public static void backTrace(int first, int n, List<Integer> output, List<List<Integer>> res) {
+        if (first == n) {
+            res.add(new ArrayList<>(output));
+        }
+        for (int i = first; i < n; i++) {
+            Collections.swap(output, first, i);
+            backTrace(first + 1, n, output, res);
+            Collections.swap(output, first, i);
+        }
+    }
+
     public static void main(String[] args) {
-        int[] a = {2, 7, 11, 15};
-        System.out.println(Arrays.toString(twoSum(a, 9)));
+        int[] a = {1, 2, 3};
+        System.out.println(permute(a));
     }
 }

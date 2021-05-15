@@ -1,5 +1,8 @@
 package LinkedList;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class LinkedList {
     public static class ListNode {
         int val;
@@ -49,15 +52,53 @@ public class LinkedList {
         return pre.next;
     }
 
-    public static void main(String[] args) {
-        LinkedList linkedList = new LinkedList();
-        ListNode t1 = new ListNode(1);
-        t1.next = new ListNode(2);
-        t1.next.next = new ListNode(4);
+    /**
+     * 142 环形链表
+     *
+     * @param head
+     * @return
+     */
+    public static ListNode detectCycle(ListNode head) {
+//        1.使用set保存所有listnode
+//        if (head == null) return head;
+//        Set<ListNode> set = new HashSet<>();
+//        while (head != null) {
+//            if (set.contains(head)) {
+//                return head;
+//            }
+//            set.add(head);
+//            head = head.next;
+//        }
+//        return null;
 
-        ListNode t2 = new ListNode(1);
-        t2.next = new ListNode(3);
-        t2.next.next = new ListNode(4);
-        ListNode res = linkedList.mergeTwoLists(t1, t2);
+        if (head == null || head.next == null) return null;
+        ListNode low = head, fast = head;
+        while (fast != null) {
+            low = low.next;
+            if (fast.next != null) {
+                fast = fast.next.next;
+            } else {
+                return null;
+            }
+            //第一次相遇时
+            if (fast == low) {
+                ListNode pre = head;
+                while (pre != low) {
+                    low = low.next;
+                    pre = pre.next;
+                }
+                return pre;
+            }
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        ListNode t1 = new ListNode(3);
+        t1.next = new ListNode(2);
+        t1.next.next = new ListNode(0);
+        t1.next.next.next = new ListNode(-4);
+        t1.next.next.next.next = t1.next;
+        System.out.println(detectCycle(t1));
     }
 }
