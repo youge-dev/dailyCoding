@@ -21,6 +21,42 @@ public class LinkedList {
         }
     }
 
+    /**
+     * 2. 两数相加
+     */
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        while (l1 == null || l2 == null) return null;
+        ListNode sum = new ListNode(-1);
+        ListNode res = sum;
+        int jinwei = 0;
+        while (l1 != null && l2 != null) {
+            if (l1.val + l2.val + jinwei >= 10) {
+                sum.next = new ListNode(l1.val + l2.val + jinwei - 10);
+                jinwei = 1;
+            } else {
+                sum.next = new ListNode(l1.val + l2.val + jinwei);
+                jinwei = 0;
+            }
+            l1 = l1.next;
+            l2 = l2.next;
+            sum = sum.next;
+        }
+        ListNode diff = l1 == null ? l2 : l1;
+        while (diff != null) {
+            if (diff.val + jinwei >= 10) {
+                sum.next = new ListNode(diff.val + jinwei - 10);
+                jinwei = 1;
+            } else {
+                sum.next = new ListNode(diff.val + jinwei);
+                jinwei = 0;
+            }
+            sum = sum.next;
+            diff = diff.next;
+        }
+        if (jinwei != 0) sum.next = new ListNode(jinwei);
+        return res.next;
+    }
+
     public ListNode mergeTwoListsRecur(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;
@@ -94,11 +130,13 @@ public class LinkedList {
     }
 
     public static void main(String[] args) {
-        ListNode t1 = new ListNode(3);
-        t1.next = new ListNode(2);
-        t1.next.next = new ListNode(0);
-        t1.next.next.next = new ListNode(-4);
-        t1.next.next.next.next = t1.next;
-        System.out.println(detectCycle(t1));
+        ListNode t1 = new ListNode(9);
+        t1.next = new ListNode(9);
+
+        ListNode t2 = new ListNode(9);
+        t2.next = new ListNode(9);
+        t2.next.next = new ListNode(9);
+        ListNode res = addTwoNumbers(t1, t2);
+//        System.out.println();
     }
 }

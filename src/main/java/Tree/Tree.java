@@ -44,7 +44,7 @@ public class Tree {
                 if (node.right != null) queue.offer(node.right);
             }
             isLeft = !isLeft;
-           res.add(new LinkedList<>(integerDeque));
+            res.add(new LinkedList<>(integerDeque));
         }
         return res;
     }
@@ -90,19 +90,66 @@ public class Tree {
         return ans;
     }
 
+    /**
+     * 二叉树的最大深度：max(左子树深度,右子树深度)+1 递归dfs实现
+     */
+    public static int maxDepthWithDfs(TreeNode root) {
+        if (root == null) return 0;
+        return Math.max(maxDepthWithDfs(root.left), maxDepthWithDfs(root.right)) + 1;
+    }
+
+    /**
+     * 二叉树的最大深度：广度优先遍历，每层加1
+     */
+    public static int maxDepthWithBfs(TreeNode root) {
+        if (root == null) return 0;
+        int res = 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            while (size > 0) {
+                TreeNode node = queue.peek();
+                queue.poll();
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
+                size--;
+            }
+            res += 1;
+        }
+        return res;
+    }
+
+    /**
+     * 199. 二叉树的右视图
+     * 用层序遍历，每层输出最后一个节点
+     */
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if (root == null) return res;
+        Deque<TreeNode> queue = new LinkedList<>();
+        queue.offerLast(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            res.add(queue.getLast().val);
+            while (size > 0) {
+                TreeNode node = queue.peek();
+                queue.poll();
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
+                size--;
+            }
+        }
+        return res;
+    }
 
     public static void main(String[] args) {
         TreeNode node = new TreeNode(3);
         node.left = new TreeNode(9);
-        node.right = new TreeNode(20);
-        node.right.left = new TreeNode(15);
-        node.right.right = new TreeNode(7);
-        System.out.println(Arrays.toString(zigzagLevelOrder(node).toArray()));
-
-        Deque<Integer> integerDeque = new LinkedList<>();
-        integerDeque.offerLast(10);
-        integerDeque.offerLast(9);
-        System.out.println(Arrays.toString(integerDeque.toArray()));
+        node.left.left = new TreeNode(10);
+//        node.right = new TreeNode(20);
+//        node.right.left = new TreeNode(15);
+//        node.right.right = new TreeNode(7)；
 
     }
 }
