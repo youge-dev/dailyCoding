@@ -1,6 +1,7 @@
 package LinkedList;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class LinkedList {
@@ -19,6 +20,45 @@ public class LinkedList {
             this.val = val;
             this.next = next;
         }
+    }
+
+    /**
+     * 25. K 个一组翻转链表
+     *
+     * @param head
+     * @param k
+     * @return
+     */
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode pre = dummy;
+        ListNode end = dummy;
+        while (end.next != null) {
+            for (int i = 0; i < k && end != null; i++) end = end.next;
+            if (end == null) break;
+            ListNode start = pre.next;//反转前的链表头
+            ListNode next = end.next;//反转后的链表尾
+            end.next = null;//截断与下一个链表的关系
+            pre.next = reverse(start); //相邻待反转的链表头
+            start.next = next;  // 和没反转的链表链接上
+            pre = start;
+            end = pre;//pre 和end重置起始点
+        }
+        return dummy.next;
+    }
+
+    //反转链表
+    public static ListNode reverse(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode cur = head, pre = null;
+        while (cur != null) {
+            ListNode tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
+        }
+        return pre;
     }
 
     /**
