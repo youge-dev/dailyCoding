@@ -1,4 +1,4 @@
-package ThreadPool;
+package MultiThread;
 
 import lombok.SneakyThrows;
 

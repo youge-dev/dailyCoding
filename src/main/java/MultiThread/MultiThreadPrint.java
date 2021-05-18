@@ -1,3 +1,5 @@
+package MultiThread;
+
 import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.Synchronized;

@@ -1,3 +1,5 @@
+package Cache;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -35,7 +37,7 @@ public class LRUCache_Node {
         head.next = tail;
         tail.pre = head;
     }
-三叔
+
     public int get(int key) {
         if (!cache.containsKey(key)) return -1;
         DLinkedNode node = cache.get(key);
