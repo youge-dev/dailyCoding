@@ -107,8 +107,47 @@ public class Array {
         }
     }
 
+    /**
+     * 归并排序
+     */
+    public static int[] sortArray(int[] nums) {
+        mergeSort(nums, 0, nums.length - 1);
+        return nums;
+    }
+
+    public static void mergeSort(int[] input, int left, int right) {
+        if (left >= right) return;
+        int mid = (left + right) / 2;
+        mergeSort(input, left, mid);
+        mergeSort(input, mid + 1, right);
+        merge(input, left, mid, right);
+    }
+
+    public static void merge(int[] input, int left, int mid, int right) {
+        int[] tmp = new int[right - left + 1];
+        int i = left;
+        int j = mid + 1;
+        int k = 0;
+        while (i <= mid && j <= right) {
+            if (input[i] < input[j]) {
+                tmp[k++] = input[i++];
+            } else {
+                tmp[k++] = input[j++];
+            }
+        }
+        while (i <= mid) {
+            tmp[k++] = input[i++];
+        }
+        while (j <= right) {
+            tmp[k++] = input[j++];
+        }
+        for (int ii = 0; ii < tmp.length; ii++) {
+            input[ii + left] = tmp[ii];
+        }
+    }
+
     public static void main(String[] args) {
-        int[] a = {1, 2, 3};
-        System.out.println(permute(a));
+        int[] a = {2, 1};
+        System.out.println(Arrays.toString(sortArray(a)));
     }
 }
