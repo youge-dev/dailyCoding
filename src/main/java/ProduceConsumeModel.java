@@ -43,8 +43,8 @@ public class ProduceConsumeModel {
                 notEmpty.await();//阻塞读线程
             }
             Object x = queue[takepos++];
-            if (putpos == queue.length) {//如果读索引读到队列的最后一个位置了，那么置为0
-                putpos = 0;
+            if (takepos == queue.length) {//如果读索引读到队列的最后一个位置了，那么置为0
+                takepos = 0;
             }
             count--;
             notFull.signal();//唤醒写线程
