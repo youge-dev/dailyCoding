@@ -130,6 +130,30 @@ public class LinkedList {
     }
 
     /**
+     * 83. 删除排序链表中的重复元素
+     *
+     * @param head
+     * @return
+     */
+    public static ListNode deleteDuplicates(ListNode head) {
+        ListNode pre = head;
+        while (pre != null) {
+            while (pre.next!=null && pre.val == pre.next.val) {
+                pre.next= pre.next.next;
+            }
+            pre = pre.next;
+        }
+        return head;
+    }
+
+    public static void printListNode(ListNode head) {
+        while (head != null) {
+            System.out.println(head.val);
+            head = head.next;
+        }
+    }
+
+    /**
      * 142 环形链表
      *
      * @param head
@@ -173,12 +197,12 @@ public class LinkedList {
 
     public static void main(String[] args) {
 
-//        ListNode t1 = new ListNode(9);
-//        t1.next = new ListNode(9);
-//
-//        ListNode t2 = new ListNode(9);
-//        t2.next = new ListNode(9);
-//        t2.next.next = new ListNode(9);
-//        ListNode res = addTwoNumbers(t1, t2);
+        ListNode t1 = new ListNode(1);
+        t1.next = new ListNode(1);
+        t1.next.next = new ListNode(1);
+//        t1.next.next.next = new ListNode(3);
+//        t1.next.next.next.next = new ListNode(3);
+        printListNode(deleteDuplicates(t1));
+
     }
 }

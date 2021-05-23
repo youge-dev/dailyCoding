@@ -1,5 +1,7 @@
 package String;
 
+import org.apache.shiro.util.StringUtils;
+
 import java.util.*;
 
 public class StringTest {
@@ -126,9 +128,44 @@ public class StringTest {
         }
     }
 
+    /**
+     * 151. 翻转字符串里的单词
+     *
+     * @param s
+     * @return
+     */
+    public static String reverseWords(String s) {
+        Deque<String> res = new LinkedList<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == ' ') continue;
+            StringBuilder builder = new StringBuilder();
+            while (i < s.length() && s.charAt(i) != ' ') {
+                builder.append(s.charAt(i++));
+            }
+            res.offerFirst(builder.toString());
+        }
+        StringBuilder builder = new StringBuilder();
+        int size = res.size();
+        for (int i = 0; i < size; i++) {
+            builder.append(res.poll());
+            if (i != size - 1) {
+                builder.append(" ");
+            }
+        }
+        return builder.toString();
+    }
+
+    public static String reverseWordsWithApi(String s) {
+        s = s.trim();
+        List<String> res = Arrays.asList(s.split("\\s+"));
+        Collections.reverse(res);
+        return String.join(" ", res);
+    }
+
     public static void main(String[] args) {
-        String s = "25525511";
-        System.out.println(restoreIpAddresses(s));
+        String s = "the sky    is blue";
+
+        System.out.println(reverseWords(s).equals(reverseWordsWithApi(s)));
 //        System.out.println(s.substring(0, 1));
 //        System.out.println(longestPalindrome(s));
 //        System.out.println(isValid("([)]"));

@@ -112,4 +112,13 @@ public class FileOpe {
             e.printStackTrace();
         }
     }
+
+    private static int v = 0;
+
+    public static void main(String[] args) {
+     while(true){
+         v++;
+         System.out.println(v);
+     }
+    }
 }
