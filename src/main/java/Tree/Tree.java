@@ -143,6 +143,30 @@ public class Tree {
         return res;
     }
 
+    static int maxSum = Integer.MIN_VALUE;
+
+    /**
+     * 124. 二叉树中的最大路径和
+     *
+     * @param root
+     * @return
+     */
+    public static int maxPathSum(TreeNode root) {
+
+        maxGain(root);
+        return maxSum;
+    }
+
+    public static int maxGain(TreeNode root) {
+        if (root == null) return 0;
+        int leftGain = Math.max(maxGain(root.left), 0);
+        int rightGain = Math.max(maxGain(root.right), 0);
+        int processPath = root.val + leftGain + rightGain;
+        maxSum = Math.max(maxSum, processPath);
+        return root.val + Math.max(leftGain, rightGain);
+
+    }
+
     public static void main(String[] args) {
         TreeNode node = new TreeNode(3);
         node.left = new TreeNode(9);

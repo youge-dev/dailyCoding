@@ -148,8 +148,29 @@ public class Array {
         }
     }
 
+    /**
+     * 718. 最长重复子数组
+     *
+     * @param nums1
+     * @param nums2
+     * @return
+     */
+    public static int findLength(int[] nums1, int[] nums2) {
+        int maxRes = 0;
+        int[][] dp = new int[nums1.length + 1][nums2.length + 1];
+        for (int i = nums1.length - 1; i >= 0; i--) {
+            for (int j = nums2.length - 1; j >= 0; j--) {
+                dp[i][j] = nums1[i] == nums2[j] ? dp[i + 1][j + 1] + 1 : 0;
+                maxRes = Math.max(dp[i][j], maxRes);
+            }
+        }
+
+        return maxRes;
+    }
+
     public static void main(String[] args) {
-        int[] a = {2, 1};
-        System.out.println(Arrays.toString(sortArray(a)));
+        int[] a = {1, 2, 3, 2, 1};
+        int[] b = {3, 2, 1, 4, 7};
+        System.out.println(findLength(a, b));
     }
 }
